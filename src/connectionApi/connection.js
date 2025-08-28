@@ -12,8 +12,13 @@ export const connectionApi = createApi({
         url: '/user/connections', 
       })
     }),
+    getAllRequests: builder.query({
+      query: (credentials) => ({
+        url: '/user/request', 
+      })
+    }),
  
   })
 });
 
-export const { useLazyGetAllConnectionsQuery } = connectionApi;
+export const { useLazyGetAllConnectionsQuery,useLazyGetAllRequestsQuery } = connectionApi;
