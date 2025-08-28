@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ProtectedRoute from "./ProtectRoute.jsx";
 
 function App() {
+  
   return (
     <Provider store={store}>
       <ToastContainer />

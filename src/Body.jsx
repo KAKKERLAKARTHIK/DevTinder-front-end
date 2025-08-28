@@ -18,7 +18,7 @@ function Body() {
     const data = await getProfile(params).unwrap();  
     dispatch(loginData(data));
   } catch (error) {
-     debugger
+      
     if (error?.originalStatus === 401) {
       toast(error?.data || "Unauthorized", { theme: "dark" });
       navigate('/login');
@@ -36,9 +36,13 @@ function Body() {
   
   return(
     <div>
-            <NavBar />
-            <Outlet/>
-            <Footer/>
+               <div className="flex flex-col min-h-screen">
+      <NavBar />
+      <main className="flex-1 overflow-auto p-4 pb-20"> {/* extra padding bottom */}
+        <Outlet />
+      </main>
+      <Footer className="fixed bottom-0 left-0 w-full" />
+    </div>
     </div>
   )
 }

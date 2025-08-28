@@ -11,8 +11,15 @@ export const profileApi = createApi({
       query: (credentials) => ({
         url: '/profile/view', 
       })
-    })
+    }),
+    updadeProfile: builder.mutation({
+      query: (credentials) => ({
+        url: '/profile/edit',
+        method: 'PATCH',
+        body: credentials
+      })
+    }),
   })
 });
 
-export const { useLazyGetProfileQuery } = profileApi;
+export const { useLazyGetProfileQuery,useUpdadeProfileMutation } = profileApi;

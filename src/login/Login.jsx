@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 
 export default function Login() {
-  const [email, setEmail] = useState('prabhas@gmail.com');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('Karthik@123');
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,8 +19,7 @@ const handleSubmit = async (e) => {
     
     dispatch(loginData(res));
     navigate('/feed');
-  } catch (error) {
-    debugger
+  } catch (error) { 
     toast(error?.data || "Something went wrong", {
       position: "top-right",
       autoClose: 5000,

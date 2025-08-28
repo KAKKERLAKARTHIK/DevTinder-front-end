@@ -2,11 +2,16 @@ import { configureStore } from "@reduxjs/toolkit";
 import { loginApi } from "../loginApi/loginApi";
 import userSlice from "../slice/userSlice";
 import { profileApi } from "../profileApi/profile";
+import feedSlice from "../slice/feedSlice";
+import { feedApi } from "../feedApi/feedApi";
+
 export const  store  = configureStore({
     reducer: {
         userProfile: userSlice,
+        userFeed:feedSlice,
         [loginApi.reducerPath]: loginApi.reducer,
-        [profileApi.reducerPath]: profileApi.reducer
+        [profileApi.reducerPath]: profileApi.reducer,
+        [feedApi.reducerPath] : feedApi.reducer
     },
     devTools: true,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
@@ -15,5 +20,6 @@ export const  store  = configureStore({
         })
     .concat(loginApi.middleware)
     .concat(profileApi.middleware)
+    .concat(feedApi.middleware)
 
 })

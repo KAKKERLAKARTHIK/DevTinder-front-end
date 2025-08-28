@@ -6,8 +6,7 @@ import { loginData } from '../slice/userSlice';
 
 function NavBar() {
   const navigate = useNavigate();
-  const userData = useSelector((state) => state?.userProfile?.user);
-  console.log(userData,'userData');
+  const userData = useSelector((state) => state?.userProfile?.user); 
   const [logOutApi] =useLogoutMutation()
   const dispatch = useDispatch();
 
@@ -31,7 +30,10 @@ function NavBar() {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <a className="justify-between">
+              <a className="justify-between" onClick={() => {
+           
+                  return navigate('/profile');
+                }}>
                 Profile
                 <span className="badge">New</span>
               </a>
