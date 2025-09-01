@@ -10,9 +10,9 @@ const Feed = () => {
   const feed = useSelector((state) => state?.userFeed?.feed);
   const [allFeedData, setAllFeedData] = useState([]);
 
-  const getFeed = async () => {
+  const getFeed = async (isAllowedToRefetch=false) => {
     try {
-      if (feed) return;
+      if (feed&&!isAllowedToRefetch) return;
       const res = await getAllFeed().unwrap();
       if (!res) return;
 
@@ -28,9 +28,9 @@ const Feed = () => {
   }, []); 
   return (
     <div className='flex justify-center m-10' >
-    {allFeedData?.slice(0).map((data) => (
-      <UserCard data={data} />
-    ))}
+    {/* {allFeedData?.slice(0).map((data) => ( */}
+      {feed?.length>0 ?<UserCard data={feed?.[0]}getFeed={getFeed} />: "feed is over"}
+    {/* ))} */}
        
     </div >
   );

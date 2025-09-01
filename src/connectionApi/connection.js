@@ -1,24 +1,43 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const connectionApi = createApi({
-  reducerPath: 'connectionApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:3000',
-    credentials: 'include',
-  }),
-  endpoints: (builder) => ({
-    getAllConnections: builder.query({
-      query: (credentials) => ({
-        url: '/user/connections', 
-      })
+    reducerPath: 'connectionApi',
+    baseQuery: fetchBaseQuery({
+        baseUrl: 'http://localhost:3000',
+        credentials: 'include',
     }),
-    getAllRequests: builder.query({
-      query: (credentials) => ({
-        url: '/user/request', 
-      })
-    }),
+    endpoints: (builder) => ({
+        getAllConnections: builder.query({
+            query: (credentials) => ({
+                url: '/user/connections',
+            })
+        }),
+        getAllRequests: builder.query({
+            query: (credentials) => ({
+                url: '/user/request',
+            })
+        }),
+        reviewRequest: builder.mutation({
+            query: (credentials) => ({
+                url: `/request/review/${credentials?.status}/${credentials?.id}`,
+                method: 'POST',
+                body: credentials
+            })
+        }),
+        sendRequest: builder.mutation({
+            query: (credentials) => ({
+                url: `/request/send/${credentials?.status}/${credentials?.id}`,
+                method: 'POST',
+                body: credentials
+            })
+        }),
  
-  })
+
+    })
 });
 
-export const { useLazyGetAllConnectionsQuery,useLazyGetAllRequestsQuery } = connectionApi;
+export const{ useLazyGetAllConnectionsQuery , 
+    useLazyGetAllRequestsQuery ,
+    useReviewRequestMutation,
+    useSendRequestMutation
+} = connectionApi;

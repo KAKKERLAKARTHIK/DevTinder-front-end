@@ -6,8 +6,8 @@ import { loginData } from '../slice/userSlice';
 
 function NavBar() {
   const navigate = useNavigate();
-  const userData = useSelector((state) => state?.userProfile?.user); 
-  const [logOutApi] =useLogoutMutation()
+  const userData = useSelector((state) => state?.userProfile?.user);
+  const [logOutApi] = useLogoutMutation()
   const dispatch = useDispatch();
 
   return (
@@ -31,21 +31,27 @@ function NavBar() {
           >
             <li>
               <a className="justify-between" onClick={() => {
-           
-                  return navigate('/profile');
-                }}>
+
+                return navigate('/profile');
+              }}>
                 Profile
                 <span className="badge">New</span>
               </a>
             </li>
             <li><a onClick={() => {
-           
-                  return navigate('/connections');
-                }}>Connections</a></li>
+
+              return navigate('/connections');
+            }}>Connections</a></li>
+            <li> <a onClick={() => {
+
+              return navigate('/requests');
+            }}>Requests</a></li>
             <li>
+
+
               <a
                 onClick={() => {
-                  logOutApi( );
+                  logOutApi();
                   dispatch(loginData(null));
                   return navigate('/login');
                 }}
