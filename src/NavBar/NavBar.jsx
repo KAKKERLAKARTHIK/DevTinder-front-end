@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useLogoutMutation } from '../loginApi/loginApi';
 import { loginData } from '../slice/userSlice';
+import { feedData } from '../slice/feedSlice';
 
 function NavBar() {
   const navigate = useNavigate();
@@ -53,6 +54,7 @@ function NavBar() {
                 onClick={() => {
                   logOutApi();
                   dispatch(loginData(null));
+                  dispatch(feedData(null));
                   return navigate('/login');
                 }}
               >

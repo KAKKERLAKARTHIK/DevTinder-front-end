@@ -29,7 +29,7 @@ const Feed = () => {
   return (
     <div className='flex justify-center m-10' >
     {/* {allFeedData?.slice(0).map((data) => ( */}
-      {feed?.length>0 ?<UserCard data={feed?.[0]}getFeed={getFeed} />: "feed is over"}
+      {feed?.length>0 ?<UserCard data={feed?.[0]}getFeed={getFeed} isFeed={true} />: "feed is over"}
     {/* ))} */}
        
     </div >

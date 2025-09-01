@@ -2,7 +2,7 @@ import React from 'react'
 import { useSendRequestMutation } from '../connectionApi/connection';
 import { removeFeed } from '../slice/feedSlice';
 import { useDispatch } from 'react-redux';
-export default function UserCard({ data, getFeed = () => { } }) {
+export default function UserCard({ data, getFeed = () => { } ,isFeed=false}) {
     const [sendRequest] = useSendRequestMutation();
     const dispatch = useDispatch();
     const updateRequestStatus = async (id, status) => {
@@ -29,7 +29,7 @@ export default function UserCard({ data, getFeed = () => { } }) {
             <div className="card-body">
                 <h2 className="card-title">{data?.firstName}</h2>
                 <p> {data?.about}</p>
-                <div className="card-actions justify-end my-10">
+                {isFeed&&<div className="card-actions justify-end my-10">
                     <button className="btn btn-primary" onClick={() => updateRequestStatus(data?._id, "Ignored")}>ignore</button>
 
                     <button className="btn btn-primary" onClick={() => {
@@ -37,7 +37,7 @@ export default function UserCard({ data, getFeed = () => { } }) {
                         updateRequestStatus(data?._id, "Intrested")
                     }
                     }>Send Request</button>
-                </div>
+                </div>}
             </div>
         </div>
     )
