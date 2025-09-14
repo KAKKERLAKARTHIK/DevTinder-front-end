@@ -13,16 +13,17 @@ function Body() {
   const navigate = useNavigate();
   const user = useSelector((state) => state?.userProfile?.user);
  const fetchProfile = async (params) => {
+   debugger 
   try {
    
-    const data = await getProfile(params).unwrap();  
+    const data = await getProfile(params).unwrap(); 
     dispatch(loginData(data));
   } catch (error) {
       
     if (error?.originalStatus === 401) {
       toast(error?.data || "Unauthorized", { theme: "dark" });
-      navigate('/login');
     }  
+    navigate('/login'); 
   }
 };
 

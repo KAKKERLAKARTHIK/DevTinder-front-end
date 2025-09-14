@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const loginApi = createApi({
   reducerPath: 'loginApi',
   baseQuery: fetchBaseQuery({
-           baseUrl: "/api",
+    baseUrl: process.env.NODE_ENV === "development" ? 'http://localhost:3000' : "/api",
     credentials: 'include',
   }),
   endpoints: (builder) => ({
@@ -14,14 +14,14 @@ export const loginApi = createApi({
         body: credentials
       }),
       invalidatesTags: (result, error, arg) => result ? ['login'] : [],
-       refetchOnMountOrArgChange: true
+      refetchOnMountOrArgChange: true
 
     }),
     logout: builder.mutation({
       query: (credentials) => ({
         url: '/auth/logout',
         method: 'POST',
-         
+
       }),
     }),
     userSignUp: builder.mutation({

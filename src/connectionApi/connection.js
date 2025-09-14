@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const connectionApi = createApi({
     reducerPath: 'connectionApi',
     baseQuery: fetchBaseQuery({
-                baseUrl: "/api",
+                    baseUrl:process.env.NODE_ENV === "development"? 'http://localhost:3000': "/api",
         credentials: 'include',
     }),
     endpoints: (builder) => ({

@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Provider } from "react-redux";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Provider, useSelector } from "react-redux";
 import { store } from "./store/store.js";
 import { routes } from "./routes.js";
 import Body from "./Body.jsx";
@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ProtectedRoute from "./ProtectRoute.jsx";
 
 function App() {
+  // const user = useSelector((state) => state?.userProfile?.user);
   
   return (
     <Provider store={store}>
@@ -28,6 +29,12 @@ function App() {
                   }
                 />
               ))}
+              <Route
+                path="*"
+                element={
+                  true? <Navigate to="/feed" replace />:<Navigate to="/login" replace />
+                }
+              />
             </Route>
           </Routes>
         </Suspense>
